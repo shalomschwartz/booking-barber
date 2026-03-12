@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-rubik: 'Rubik', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0a0a0a;
+  color: #f4f4f5;
+  font-family: var(--font-rubik), var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #141414; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+/* Gold shimmer on selected items */
+@keyframes goldShimmer {
+  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+.gold-pulse {
+  animation: goldShimmer 1.2s ease-out;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-top-color: #D4AF37;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+/* RTL-aware margin utility */
+[dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .mr-auto { margin-right: 0; margin-left: auto; }
+
+/* Day picker custom styles */
+.rdp-root {
+  --rdp-accent-color: #D4AF37;
+  --rdp-accent-background-color: rgba(212, 175, 55, 0.15);
+  color: #f4f4f5;
+}
+.rdp-day_button {
+  color: #f4f4f5;
+  font-weight: 500;
+}
+.rdp-day_button:hover:not(:disabled) {
+  background: rgba(212, 175, 55, 0.15) !important;
+  color: #D4AF37 !important;
+}
+.rdp-selected .rdp-day_button {
+  background: #D4AF37 !important;
+  color: #0a0a0a !important;
+  font-weight: 700;
+}
+.rdp-disabled .rdp-day_button {
+  opacity: 0.25;
+}
+.rdp-outside .rdp-day_button {
+  opacity: 0.3;
+}
+.rdp-nav button {
+  color: #D4AF37;
+}
+.rdp-caption_label {
+  color: #f4f4f5;
+  font-weight: 600;
+}
+.rdp-weekday {
+  color: #71717a;
+  font-size: 0.75rem;
+}
