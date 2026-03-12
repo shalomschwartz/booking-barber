@@ -78,8 +78,14 @@ body {
   border: 2px solid rgba(212, 175, 55, 0.3);
   border-top-color: #D4AF37;
   border-radius: 50%;
-  animation: spin 0.7s linear infinite;
+  animation: spin 0.55s linear infinite;
   display: inline-block;
+}
+
+/* ─── Focus visible (keyboard nav) ─── */
+:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
 }
 
 /* ─── RTL helpers ─── */
@@ -123,6 +129,6 @@ body {
 }
 .rdp-weekday {
   color: #71717a;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }

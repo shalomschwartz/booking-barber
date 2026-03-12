@@ -20,14 +20,14 @@ export function BookingFlow() {
   const isSuccess = state.step === "success";
 
   return (
-    <div dir={dir} className="min-h-screen bg-bg text-text-base">
+    <div dir={dir} className="min-h-screen bg-gradient-to-b from-[#0d0d0d] via-bg to-bg text-text-base">
 
       {/* ─── Nav ─── */}
       <header className="sticky top-0 z-50 bg-surface/90 backdrop-blur border-b border-border" dir="ltr">
         <div className="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gold flex items-center justify-center">
-              <Scissors size={16} className="text-bg" strokeWidth={2.5} />
+            <div className="w-8 h-8 rounded-lg bg-gold flex items-center justify-center" aria-label="Shalom Barbershop logo">
+              <Scissors size={16} className="text-bg" strokeWidth={2.5} aria-hidden="true" />
             </div>
             <div className="leading-none">
               <span className="font-extrabold text-text-base tracking-tight text-sm">
@@ -40,11 +40,13 @@ export function BookingFlow() {
           </div>
 
           {/* Lang toggle */}
-          <div className="flex bg-card rounded-lg p-0.5 gap-0.5 border border-border">
+          <div className="flex bg-card rounded-lg p-0.5 gap-0.5 border border-border" role="group" aria-label="Language selector">
             {(["he", "en"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
+                aria-label={l === "he" ? "Switch to Hebrew" : "Switch to English"}
+                aria-pressed={lang === l}
                 className={cn(
                   "px-3 py-1 rounded-md text-xs font-bold transition-all",
                   lang === l ? "bg-gold text-bg shadow-sm" : "text-muted hover:text-text-base"
@@ -74,7 +76,7 @@ export function BookingFlow() {
             <h1 className="text-4xl font-extrabold text-white mb-2 tracking-tight">
               {lang === "he" ? "קביעת תור" : "Book Appointment"}
             </h1>
-            <p className="text-muted text-sm tracking-widest uppercase">
+            <p className={cn("text-muted text-sm uppercase", lang === "en" && "tracking-widest")}>
               {lang === "he" ? "מקצועי · מהיר · אמין" : "Professional · Fast · Reliable"}
             </p>
           </div>
@@ -84,7 +86,7 @@ export function BookingFlow() {
       {/* ─── Step indicator ─── */}
       {!isSuccess && (
         <div className="max-w-2xl mx-auto px-4 py-4" dir="ltr">
-          <div className="flex items-center justify-center">
+          <nav aria-label="Booking progress" className="flex items-center justify-center">
             {STEPS_HE.map((labelHe, i) => {
               const done   = stepIndex > i;
               const active = stepIndex === i;
@@ -92,6 +94,8 @@ export function BookingFlow() {
                 <div key={i} className="flex items-center">
                   <div className="flex flex-col items-center gap-1.5">
                     <div
+                      aria-current={active ? "step" : undefined}
+                      aria-label={`Step ${i + 1}: ${lang === "he" ? labelHe : STEPS_EN[i]}${done ? " (completed)" : active ? " (current)" : ""}`}
                       className={cn(
                         "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300",
                         done   && "bg-gold text-bg shadow-lg shadow-gold/30",
@@ -112,12 +116,12 @@ export function BookingFlow() {
                     <div className={cn(
                       "w-10 sm:w-16 h-px mb-5 mx-1 transition-all duration-500",
                       done ? "bg-gold" : "bg-border"
-                    )} />
+                    )} aria-hidden="true" />
                   )}
                 </div>
               );
             })}
-          </div>
+          </nav>
         </div>
       )}
 

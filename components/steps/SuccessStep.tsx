@@ -12,10 +12,10 @@ export function SuccessStep() {
     <div className="min-h-[70vh] flex flex-col items-center justify-center text-center py-10 px-2 space-y-8 fade-up">
 
       {/* ── Gold glow icon ── */}
-      <div className="relative">
-        <div className="absolute inset-0 bg-gold/20 rounded-full blur-3xl scale-[2]" />
+      <div className="relative" role="status" aria-label={he ? "התור נקבע בהצלחה" : "Booking confirmed"}>
+        <div className="absolute inset-0 bg-gold/20 rounded-full blur-3xl scale-[2]" style={{ willChange: "transform" }} aria-hidden="true" />
         <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-gold-dim to-gold flex items-center justify-center shadow-2xl shadow-gold/50 mx-auto">
-          <CheckCircle2 size={44} className="text-bg" strokeWidth={2.5} />
+          <CheckCircle2 size={44} className="text-bg" strokeWidth={2.5} aria-hidden="true" />
         </div>
       </div>
 

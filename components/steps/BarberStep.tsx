@@ -34,7 +34,7 @@ export function BarberStep() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {BARBERS.map((barber, i) => (
           <BarberCard
             key={barber.id}
@@ -49,6 +49,7 @@ export function BarberStep() {
         {/* Any barber */}
         <button
           onClick={() => setBarber(BARBERS[0])}
+          aria-label={he ? "בחר ספר אוטומטי לפי זמינות" : "Select any available barber"}
           style={{ animationDelay: `${BARBERS.length * 60}ms` }}
           className={cn(
             "p-5 rounded-2xl border border-dashed border-border hover:border-gold/60",
@@ -88,9 +89,14 @@ function BarberCard({
   const fullStars = Math.floor(barber.rating);
   const hasHalf   = barber.rating % 1 >= 0.5;
 
+  const label = he
+    ? `בחר ${barber.nameHe}, ${barber.titleHe}, ${barber.experience} שנות ניסיון`
+    : `Select ${barber.nameEn}, ${barber.titleEn}, ${barber.experience} years experience`;
+
   return (
     <button
       onClick={() => onSelect(barber)}
+      aria-label={label}
       style={{ animationDelay: `${index * 60}ms` }}
       className={cn(
         "p-5 rounded-2xl border border-border hover:border-gold/70",
@@ -107,7 +113,7 @@ function BarberCard({
         )}>
           {he ? barber.nameHe[0] : barber.nameEn[0]}
         </div>
-        <span className="absolute -bottom-0.5 -end-0.5 w-4 h-4 bg-emerald-500 rounded-full border-2 border-bg" />
+        <span aria-hidden="true" className="absolute -bottom-0.5 -end-0.5 w-4 h-4 bg-emerald-500 rounded-full border-2 border-bg" />
       </div>
 
       <div className="font-extrabold text-lg text-text-base group-hover:text-gold transition-colors leading-tight">

@@ -129,8 +129,10 @@ export function DateTimeStep() {
                     <button
                       key={slot}
                       onClick={() => handleSlotClick(slot)}
+                      aria-label={`Select ${slot}`}
+                      aria-pressed={state.timeSlot === slot}
                       className={
-                        "py-2.5 rounded-xl text-sm font-bold border transition-all " +
+                        "h-11 rounded-xl text-sm font-bold border transition-all " +
                         (state.timeSlot === slot
                           ? "bg-gold text-bg border-gold gold-pulse shadow-lg shadow-gold/30"
                           : "bg-card border-border text-text-base hover:border-gold/60 hover:text-gold hover:bg-[#1c1608]")
@@ -148,21 +150,28 @@ export function DateTimeStep() {
           {/* WhatsApp reminder */}
           {rawSlots.length > 0 && (
             <label className="flex items-center gap-3 cursor-pointer select-none p-4 bg-card rounded-2xl border border-border hover:border-gold/40 transition-colors mt-2">
+              <input
+                type="checkbox"
+                checked={state.whatsappReminder}
+                onChange={(e) => setWhatsappReminder(e.target.checked)}
+                className="sr-only"
+                aria-label={he ? "שלח תזכורת בווטסאפ" : "Send WhatsApp reminder"}
+              />
               <div
+                aria-hidden="true"
                 className={
                   "w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all " +
                   (state.whatsappReminder ? "bg-green-500 shadow-md shadow-green-500/30" : "bg-border")
                 }
-                onClick={() => setWhatsappReminder(!state.whatsappReminder)}
               >
                 {state.whatsappReminder && (
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                     <path d="M2 6l3 3 5-5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )}
               </div>
               <div className="flex items-start gap-2.5">
-                <MessageCircle size={18} className="text-green-400 mt-0.5 flex-shrink-0" />
+                <MessageCircle size={18} className="text-green-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <div className="text-sm font-semibold text-text-base">
                     {he ? "שלח לי תזכורת בווטסאפ 📱" : "Send me a WhatsApp reminder 📱"}

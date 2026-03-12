@@ -21,7 +21,7 @@ export function ServiceStep() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {SERVICES.map((service, i) => (
           <ServiceCard
             key={service.id}
@@ -49,9 +49,14 @@ function ServiceCard({
 }) {
   const he = lang === "he";
 
+  const label = he
+    ? `בחר ${service.nameHe}, ${service.duration} דק׳, ₪${service.price}`
+    : `Select ${service.nameEn}, ${service.duration} minutes, ₪${service.price}`;
+
   return (
     <button
       onClick={() => onSelect(service)}
+      aria-label={label}
       style={{ animationDelay: `${index * 60}ms` }}
       className={cn(
         "relative text-start w-full p-5 rounded-2xl border transition-all duration-200 group stagger-item",

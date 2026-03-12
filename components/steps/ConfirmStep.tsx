@@ -110,6 +110,7 @@ export function ConfirmStep() {
       {/* Form */}
       <div className="space-y-3">
         <Field
+          id="field-name"
           label={he ? "שם מלא" : "Full Name"}
           placeholder={he ? "ישראל ישראלי" : "John Smith"}
           value={state.clientName}
@@ -117,6 +118,7 @@ export function ConfirmStep() {
           error={errors.name}
         />
         <Field
+          id="field-phone"
           label={he ? "מספר טלפון" : "Phone Number"}
           placeholder="05X-XXXXXXX"
           value={state.clientPhone}
@@ -126,6 +128,7 @@ export function ConfirmStep() {
           dir="ltr"
         />
         <Field
+          id="field-email"
           label={he ? "אימייל (אופציונלי)" : "Email (optional)"}
           placeholder={he ? "israel@example.com" : "john@example.com"}
           value={state.clientEmail}
@@ -165,8 +168,9 @@ export function ConfirmStep() {
 }
 
 function Field({
-  label, placeholder, value, onChange, error, type = "text", dir, prefix,
+  id, label, placeholder, value, onChange, error, type = "text", dir, prefix,
 }: {
+  id: string;
   label: string;
   placeholder: string;
   value: string;
@@ -176,9 +180,10 @@ function Field({
   dir?: string;
   prefix?: string;
 }) {
+  const errorId = `${id}-error`;
   return (
     <div className="space-y-1.5">
-      <label className="text-sm font-semibold text-text-base block">{label}</label>
+      <label htmlFor={id} className="text-sm font-semibold text-text-base block">{label}</label>
       <div className="flex items-center">
         {prefix && (
           <span className="px-3 py-3 bg-border text-muted text-sm rounded-s-xl border border-border font-mono">
@@ -186,21 +191,24 @@ function Field({
           </span>
         )}
         <input
+          id={id}
           type={type}
           dir={dir}
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          aria-describedby={error ? errorId : undefined}
+          aria-invalid={error ? true : undefined}
           className={cn(
-            "w-full px-3.5 py-3 bg-card border text-text-base text-sm rounded-xl outline-none transition-all",
-            "placeholder:text-muted/40",
+            "w-full px-3.5 py-3 bg-card border text-text-base text-sm rounded-xl outline-none transition-all duration-200",
+            "placeholder:text-muted/60",
             "focus:border-gold focus:ring-1 focus:ring-gold/30",
             error ? "border-red-500 bg-red-950/20" : "border-border",
             prefix && "rounded-s-none border-s-0"
           )}
         />
       </div>
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p id={errorId} role="alert" className="text-xs text-red-400">{error}</p>}
     </div>
   );
 }

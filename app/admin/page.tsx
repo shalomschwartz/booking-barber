@@ -142,7 +142,8 @@ export default function AdminPage() {
             placeholder="חיפוש שם, טלפון, שירות..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 min-w-[180px] px-3.5 py-2 bg-card border border-border rounded-xl text-text-base text-sm outline-none focus:border-gold transition-all placeholder:text-muted/50"
+            aria-label="חיפוש תורים"
+            className="flex-1 min-w-[180px] px-3.5 py-2 bg-card border border-border rounded-xl text-text-base text-sm outline-none focus:border-gold transition-all placeholder:text-muted/60"
           />
         </div>
 
@@ -159,7 +160,7 @@ export default function AdminPage() {
             <div className="py-12 text-center text-muted text-sm">אין תורים להצגה</div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full" dir="rtl">
+              <table className="w-full" dir="rtl" aria-label="רשימת תורים">
                 <thead>
                   <tr className="border-b border-border">
                     {["שם", "טלפון", "שירות", "ספר", "שעה", "מחיר", "סטטוס", "פעולה"].map((h) => (
@@ -193,6 +194,7 @@ export default function AdminPage() {
                         {apt.status === "confirmed" && (
                           <button
                             onClick={() => handleCancel(apt.id)}
+                            aria-label={`ביטול תור של ${apt.clientName}`}
                             className="text-xs text-red-400 hover:text-red-300 transition-colors"
                           >
                             ביטול
