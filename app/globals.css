@@ -24,36 +24,54 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Scrollbar */
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #141414; }
 ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
 
-/* Gold shimmer on selected items */
+/* ─── Gold pulse (selected slot) ─── */
 @keyframes goldShimmer {
-  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-  70% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
   100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
 }
-
 .gold-pulse {
-  animation: goldShimmer 1.2s ease-out;
+  animation: goldShimmer 1s ease-out;
 }
 
+/* ─── Step enter animation ─── */
+@keyframes stepEnter {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+.step-enter {
+  animation: stepEnter 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── Generic fade-up ─── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 .fade-up {
   animation: fadeUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* ─── Stagger cards ─── */
+@keyframes staggerIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.stagger-item {
+  opacity: 0;
+  animation: staggerIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── Spinner ─── */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-
 .spinner {
   width: 18px;
   height: 18px;
@@ -64,11 +82,11 @@ body {
   display: inline-block;
 }
 
-/* RTL-aware margin utility */
+/* ─── RTL helpers ─── */
 [dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }
 [dir="rtl"] .mr-auto { margin-right: 0; margin-left: auto; }
 
-/* Day picker custom styles */
+/* ─── react-day-picker dark overrides ─── */
 .rdp-root {
   --rdp-accent-color: #D4AF37;
   --rdp-accent-background-color: rgba(212, 175, 55, 0.15);
@@ -77,6 +95,7 @@ body {
 .rdp-day_button {
   color: #f4f4f5;
   font-weight: 500;
+  border-radius: 10px;
 }
 .rdp-day_button:hover:not(:disabled) {
   background: rgba(212, 175, 55, 0.15) !important;
@@ -86,21 +105,24 @@ body {
   background: #D4AF37 !important;
   color: #0a0a0a !important;
   font-weight: 700;
+  border-radius: 10px;
 }
 .rdp-disabled .rdp-day_button {
-  opacity: 0.25;
+  opacity: 0.2;
 }
 .rdp-outside .rdp-day_button {
-  opacity: 0.3;
+  opacity: 0.25;
 }
 .rdp-nav button {
   color: #D4AF37;
 }
 .rdp-caption_label {
   color: #f4f4f5;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.9rem;
 }
 .rdp-weekday {
   color: #71717a;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
 }

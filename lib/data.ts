@@ -62,15 +62,33 @@ export const BARBERS: Barber[] = [
     titleEn: "Head Barber",
     rating: 4.9,
     reviewCount: 312,
+    experience: 12,
+    specialtyHe: "תספורות קלאסיות ועיצוב",
+    specialtyEn: "Classic cuts & styling",
   },
   {
     id: "david",
     nameHe: "דוד",
     nameEn: "David",
-    titleHe: "ספר מומחה פייד",
+    titleHe: "מומחה פייד",
     titleEn: "Fade Specialist",
     rating: 4.8,
     reviewCount: 187,
+    experience: 8,
+    specialtyHe: "פייד, אומנות שיער",
+    specialtyEn: "Fades & hair art",
+  },
+  {
+    id: "yossi",
+    nameHe: "יוסי",
+    nameEn: "Yossi",
+    titleHe: "מומחה זקן",
+    titleEn: "Beard Expert",
+    rating: 4.7,
+    reviewCount: 134,
+    experience: 6,
+    specialtyHe: "זקן, גילוח ועיצוב",
+    specialtyEn: "Beard grooming & shaping",
   },
 ];
 
@@ -89,6 +107,7 @@ export const WORK_HOURS: Record<number, { open: number; close: number } | null> 
 export const EXISTING_BOOKINGS: Record<string, string[]> = {
   shalom: ["09:00", "09:30", "11:00", "14:00", "16:30"],
   david:  ["10:00", "10:30", "13:00", "15:00"],
+  yossi:  ["09:30", "10:00", "12:00", "15:30"],
 };
 
 // Fake admin appointments for dashboard

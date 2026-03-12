@@ -19,6 +19,9 @@ export interface Barber {
   photo?: string; // URL or undefined for placeholder
   rating: number;
   reviewCount: number;
+  experience: number; // years
+  specialtyHe: string;
+  specialtyEn: string;
 }
 
 export interface TimeSlot {

@@ -15,8 +15,8 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "Barber Shop | קביעת תור",
-  description: "Book your appointment online | קבע תור אונליין",
+  title: "ברבר שלום | קביעת תור",
+  description: "קבע תור אונליין — תספורת מקצועית בבני ברק | Book your appointment",
   themeColor: "#0a0a0a",
 };
 
