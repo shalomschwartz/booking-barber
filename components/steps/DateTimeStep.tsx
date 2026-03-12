@@ -51,7 +51,6 @@ export function DateTimeStep() {
 
   function handleSlotClick(slot: string) {
     setTimeSlot(slot);
-    setTimeout(() => goToStep("confirm"), 350);
   }
 
   const isDayDisabled = (day: Date) => isPastDate(day) || !isWorkingDay(day);

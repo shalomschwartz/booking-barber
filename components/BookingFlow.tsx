@@ -31,7 +31,7 @@ export function BookingFlow() {
             </div>
             <div className="leading-none">
               <span className="font-extrabold text-text-base tracking-tight text-sm">
-                {lang === "he" ? "ברבר שלום" : "Shalom Barbershop"}
+                {lang === "he" ? "תספורת שלום" : "Shalom Barbershop"}
               </span>
               <span className="block text-[10px] text-gold font-medium tracking-widest uppercase opacity-80">
                 Premium Barber
@@ -137,7 +137,7 @@ export function BookingFlow() {
         <footer className="text-center text-muted text-xs py-6 border-t border-border">
           <div className="flex items-center justify-center gap-1.5 mb-1">
             <Scissors size={10} className="text-gold opacity-60" />
-            <span className="text-gold/60 font-semibold">ברבר שלום</span>
+            <span className="text-gold/60 font-semibold">תספורת שלום</span>
           </div>
           © {new Date().getFullYear()} ·{" "}
           {lang === "he" ? "כל הזכויות שמורות" : "All rights reserved"}
