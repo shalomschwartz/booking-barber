@@ -124,7 +124,6 @@ export function ConfirmStep() {
           error={errors.phone}
           type="tel"
           dir="ltr"
-          prefix="+972"
         />
         <Field
           label={he ? "אימייל (אופציונלי)" : "Email (optional)"}
